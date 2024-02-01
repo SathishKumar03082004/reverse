@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
     <style>
+
     table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
@@ -341,6 +342,50 @@ function edit_Guest(action, id) {
             console.error('Error:', error);
         });
     }
+
+
+    (function(document) {
+            'use strict';
+
+            var TableFilter = (function(myArray) {
+                var search_input;
+
+                function _onInputSearch(e) {
+                    search_input = e.target;
+                    var rows = document.querySelectorAll('table tr');
+                    myArray.forEach.call(rows, function(row) {
+                        if (!row.classList.contains('header-row')) {
+                            var columns = Array.from(row.querySelectorAll('td'));
+                            var text_content = columns.map(column => column.textContent.toLowerCase()).join(' ');
+                            var search_val = search_input.value.toLowerCase();
+                            var display_style = text_content.indexOf(search_val) > -1 ? '' : 'none';
+                            row.style.display = display_style;
+                            if (display_style === '') {
+                                row.classList.add('highlight'); // Highlight the matched rows
+                            } else {
+                                row.classList.remove('highlight');
+                            }
+                        }
+                    });
+                }
+
+                return {
+                    init: function() {
+                        var inputs = document.getElementsByClassName('find');
+                        myArray.forEach.call(inputs, function(input) {
+                            input.oninput = _onInputSearch;
+                        });
+                    }
+                };
+            })(Array.prototype);
+
+            document.addEventListener('readystatechange', function() {
+                if (document.readyState === 'complete') {
+                    TableFilter.init();
+                }
+            });
+
+        })(document);
 
 
 
