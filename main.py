@@ -86,3 +86,13 @@ def create_data(request:Request,db:Session=Depends(get_db),edit_id:int=Form(...)
 def get_card(request:Request,db:Session = Depends(get_db)):
     new_user=db.query(models.Card).filter(models.Card.cname=="Zoho").first()
     return templates.TemplateResponse("card.html",context={"request":request,"new_name":new_user})
+
+
+
+
+#card loop 
+@app.get('/loop')
+def loop_card(request:Request,db:Session = Depends(get_db)):
+    new_card = db.query(models.Col).all()
+    print(new_card)
+    return templates.TemplateResponse("loop.html",context={"request":request,"new_card":new_card})
