@@ -1,0 +1,68 @@
+{% include "include/bar.php" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        btn{
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+<center>
+    <h3>Shift Session</h3>
+</center>
+<!-- <buttonaction="/login">Logout</button> -->
+
+<div class="main-container">
+    <canvas id="percentageChart" width="600" height="400"></canvas>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var newDayValue = 80;
+    var newNightValue = 20;
+
+    var chartData = {
+        labels: ["Day", "Night"],
+        datasets: [{
+            data: [newDayValue, newNightValue],
+            backgroundColor: ["#36ccd1", "#f2f2f2"],
+        }]
+    };
+
+    var ctx = document.getElementById('percentageChart').getContext('2d');
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: chartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+});
+
+    var notificationIcon = document.querySelector('.notification');
+    notificationIcon.addEventListener('click', function() {
+        document.getElementById('notificationPopup').style.display = 'block';
+    });
+
+    document.getElementById('closePopupBtn').addEventListener('click', function() {
+        document.getElementById('notificationPopup').style.display = 'none';
+    });
+</script>
+
+<footer>
+    <p>&copy; 2024 App. All rights reserved.</p>
+    <p>Developed By <a href="https://sathish3.godaddysites.com">Sathish Kumar G</a></p>
+</footer>
+
+</body>
+</html>

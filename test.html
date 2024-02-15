@@ -1,3 +1,4 @@
+{% include "include/bar.php" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
         }
 
         td {
-            border-radius: 20px;
             text-align: left;
             padding: 8px;
             background-color: #c5d7e6;
@@ -26,7 +26,6 @@
         th {
             background-color: #ccffff;
             padding: 10px;
-            border-radius: 20px;
             text-align: center;
         }
         .button {
@@ -73,51 +72,9 @@
             margin-right: 10px;
         }
 
-
-        /* Add this CSS to your existing <style> tag or create a new one */
-            .sidebar {
-            height: 100%;
-            width: 200px; /* Adjust the width to your preference */
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            padding-top: 20px;
-        }
-
-.sidebar a {
-    padding: 16px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-}
-
-.sidebar a:hover {
-    background-color: #ddd;
-    color: black;
-}
-.main-container {
-            margin-left: 190px; /* Adjust the margin to leave space for the sidebar */
-            padding: 20px; /* Add padding to the main container */
-        }
-
-        h2{
-            color: #ddd;
-        }
-
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <center>
-        <h2>Hotel</h2>
-        </center>
-        <a href="#">Home</a>
-        <a href="#">page 1</a>
-        <a href="#">Page 2</a>
-    </div>
     <div class="main-container">
         <div class="button-container">
             <button class="button" data-toggle="modal" data-target="#addModal">Add</button>
@@ -128,26 +85,17 @@
             <input type="text" class="find" id="searchInput">
         </div>
         <br>
-        <label for="count">Show</label>
-        <select name="count" id="show">
-            <option value="2">2</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-        <label>Entities</label>
-        <table>
+        <table id="example">
             <tr>
-                <th><input type="checkbox" class="select-all" id="selectAll"></th>
                 <th>Employee Name</th>
                 <th>Shift Session</th>
-                <th>Login Date</th>
-                <th>Login Time</th>
-                <th>Logout Time</th>
+                <th>Login Date<br>(YYYY-MM-DD)</th>
+                <th>Login Time<br>(24-Hours)</th>
+                <th>Logout Time<br>(24-Hours)</th>
                 <th>Action</th>
             </tr>
             {% for new_id in new_id%}
             <tr>
-                <td><input type="checkbox" class="select-row"></td>
                 <td>{{new_id.ename}}</td>
                 <td>{{new_id.session}}</td>
                 <td>{{new_id.logindate}}</td>
@@ -187,8 +135,8 @@
 
                     <label for="shiftSession">Shift Session:</label>
                     <select id="session" name="session" required>
-                        <option value="day">Day</option>
-                        <option value="night">Night</option>
+                        <option value="Day">Day</option>
+                        <option value="Night">Night</option>
                     </select><br>
 
                     <label for="logindate">Login Date:</label>
@@ -243,8 +191,8 @@
                         <input type="text" id="edit_name" class="form-control" value=><br>
                         <label for="session">Session:</label>
                         <select id="edit_session" class="form-control">
-                            <option value="day">Day</option>
-                            <option value="night">Night</option>
+                            <option value="Day">Day</option>
+                            <option value="Night">Night</option>
                         </select><br>
                         <label for="logindate">Login Date:</label>
                         <input type="date" id="edit_logindate" class="form-control"><br>
@@ -261,6 +209,14 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 App. All rights reserved.</p>
+        <p>Developed By <a href="https://sathish3.godaddysites.com">Sathish Kumar G</a></p>
+    </footer>
+
+    
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -311,7 +267,6 @@ function delete_Guest(id){
 
 function edit_Guest(action, id) {
         if ((action == "Edit")) {
-          //alert(action);
             var formData = {
               edit_id: parseInt($("#edit_id").val(), 10),
               edit_name: $("#edit_name").val(),
@@ -422,6 +377,17 @@ function edit_Guest(action, id) {
             });
 
         })(document);
+
+
+
+var notificationIcon = document.querySelector('.notification');
+    notificationIcon.addEventListener('click', function() {
+        document.getElementById('notificationPopup').style.display = 'block';
+    });
+
+    document.getElementById('closePopupBtn').addEventListener('click', function() {
+        document.getElementById('notificationPopup').style.display = 'none';
+    });
 </script>
 
 </body>

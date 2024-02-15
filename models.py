@@ -5,26 +5,23 @@ from database import base,db_engine
 class SignUp(base):
     __tablename__="user"
     id = Column(Integer, primary_key=True, index=True)
-    name=Column(String(20))
-    regno=Column(Integer)
-    email=Column(String(30))
-    genter=Column(String(5))
-    number=Column(Integer)
-    year=Column(String(10))
-    department=Column(String(10))
-    degree=Column(String(20))
-    area=Column(String(20))
-    status=Column(String(10))
+    username=Column(String(20),unique=True)
+    password=Column(String(10))
+    status=Column(String(20))
+
 
 class New(base):
     __tablename__="rev"
     id=Column(Integer,primary_key=True,index=True)
     ename=Column(String(20))
     session=Column(String(20))
-    logindate=Column(Date)
+    logindate=Column(String(20))
     logintime=Column(String(20))
     logouttime=Column(String(20))
     status=Column(String(10))
+
+
+
 
 class Card(base):
     __tablename__="card"
