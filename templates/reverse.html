@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/jpg" href="flappybird.jpg">
+    <style>
+    table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border-radius: 20px;
+            /* border: 1px solid #dddddd; */
+            text-align: left;
+            padding: 8px;
+            background-color: #c5d7e6;
+            text-align: center;
+        }
+        td:hover{
+            background-color: #a0eeee;
+        }
+
+        th {
+            /* border: 3px solid #000000; */
+            background-color: #ccffff;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        /* tr:nth-child(even) {
+            background-color: #dddddd;
+        } */
+        .button {
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: #008CBA;
+            border-radius: 20px;
+        }
+        .button-container {
+            text-align: right;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+
+        .find{
+            border-color: #000000;
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+        .find-container{
+            text-align: right;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+
+        .icon-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-container a {
+            border-radius: 20px;
+            padding: 5px;
+            background-color: #E0E0E0;
+        }
+        .select-all {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="button-container">
+            <button class="button" onclick="redirectToInsert()">Add</button>
+        </div>
+
+        <div class="find-container">
+            <a>Search:</a>
+            <input type="text" class="find" id="searchInput">
+        </div>
+        <br>
+        <label for="count">Show</label>
+        <select name="count" id="show">
+            <option value="2">2</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
+        <label>Entities</label>
+        <table>
+            <tr>
+                <th><input type="checkbox" class="select-all" id="selectAll"></th>
+                <th>Employee Name</th>
+                <th>Shift Session</th>
+                <th>Login Date</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+                <th>Action</th>
+            </tr>
+            {% for new_id in new_id%}
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>{{new_id.ename}}</td>
+                <td>{{new_id.session}}</td>
+                <td>{{new_id.logindate}}</td>
+                <td>{{new_id.logintime}}</td>
+                <td>{{new_id.logouttime}}</td>
+                <td>
+                    <a href="#"  onclick="editemp('{{new_id.id}}')" data-toggle="modal" data-target="#editModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                        </svg>
+                    </a>
+                    <a href="#" onclick="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                        </svg>
+                    </a>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Employee Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="editEmployeeName">Employee Name:</label>
+                        <input type="text" id="editEmployeeName" class="form-control" value=><br>
+                        <label for="session">Session:</label>
+                        <input type="text" id="session" class="form-control"><br>
+                        <label for="logindate">Login Date:</label>
+                        <input type="date" id="logindate" class="form-control"><br>
+                        <label for="logintime">Login Time:</label>
+                        <input type="time" id="logintime" class="form-control"><br>
+                        <label for="logouttime">Login Out Time:</label>
+                        <input type="time" id="logouttime" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script>
+
+    function redirectToInsert() {
+        window.location.href = "/insert";
+    }
+
+    function saveChanges() {
+        window.location.href="/edit_emp/"+id;
+    }
+    document.querySelectorAll('.edit-icon').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            $('#editModal').modal('show');
+        });
+    });
+
+    document.querySelector('.bi-pen-fill').addEventListener('click', function() {
+        $('#editModal').modal('show');
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function () {
+            var searchText = this.value.toLowerCase();
+            var rows = document.querySelectorAll('table tr');
+
+            rows.forEach(function (row) {
+                if (!row.classList.contains('header-row')) {
+                    var columns = row.querySelectorAll('td');
+
+                    var displayRow = false;
+                    columns.forEach(function (column) {
+                        var columnText = column.textContent.toLowerCase();
+                        if (columnText.includes(searchText)) {
+                            displayRow = true;
+                        }
+                    });
+                    row.style.display = displayRow ? '' : 'none';
+                }
+            });
+            if (searchText === "") {
+                rows.forEach(function (row) {
+                    row.style.display = '';
+                });
+            }
+        });
+    });
+    function editemp(id){
+        $.ajax({
+            type :'PUT',
+            url: '/edit_emp/'+id,
+            id :id,
+            processData: 'false',
+        }).done(function(data){
+            $("#editEmployeeName").val(data.ename);
+            $("#session").val(data.session);
+            $("#logindate").val(data.ename);
+            $("#logintime").val(data.ename);
+            $("#logouttime").val(data.ename);
+            $("#editModal").modal('show');
+
+        });
+    }
+</script>
+    </div>
+</body>
+</html>
+
+
+onclick="editemp('{{new_id.id}}')" 
+
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Include Bootstrap library for modal functionality -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

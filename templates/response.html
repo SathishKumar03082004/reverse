@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Table</title>
+    <style>
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Users</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Registration Number</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Number</th>
+            <th>Year</th>
+            <th>Department</th>
+            <th>Degree</th>
+            <th>Area</th>
+            <th>Edit</th>
+        </tr>
+        {% for user in user%}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button onclick="openEditModal()">Edit</button></td>
+        </tr>
+    </table>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h3>Edit User</h3>
+            <form id="editForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="registerNumber">Register Number:</label>
+                <input type="text" id="regno" name="regno"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select><br><br>
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="number" name="number"><br><br>
+                <label for="year">Year:</label>
+                <select id="year" name="year">
+                    <option value="third">3RD Year</option>
+                    <option value="fourth">4TH Year</option>
+                </select><br><br>
+                <label for="department">Department:</label>
+                <select id="department" name="department">
+                    <option value="it">IT</option>
+                    <option value="ece">ECE</option>
+                    <option value="cse">CSE</option>
+                    <option value="eee">EEE</option>
+                    <option value="civil">CIVIL</option>
+                    <option value="mech">MECH</option>
+                    <option value="aids">AIDS</option>
+                </select><br><br>
+                <label for="degree">Degree:</label>
+                <input type="text" id="degree" name="degree"><br><br>
+                <label for="area">Area of Interest:</label>
+                <input type="text" id="area" name="area"><br><br>
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal() {
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

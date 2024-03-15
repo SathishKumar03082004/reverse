@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .top-dashboard {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .top-dashboard h1 {
+            margin-bottom: 0;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: -200px; /* Hide the sidebar by default */
+            background-color: #5592ce;
+            padding-top: 20px;
+            transition: 0.5s; /* Add transition for smooth animation */
+        }
+
+        .sidebar a {
+            padding: 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #ddd;
+            color: rgb(255, 255, 255);
+        }
+
+        .main-container {
+            margin-left: 0; /* Updated margin to 0 when sidebar is closed */
+            padding: 20px;
+            transition: 0.5s; /* Add transition for smooth animation */
+        }
+
+        h2 {
+            color: #ddd;
+        }
+
+        footer {
+            background-color: #5592ce;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        h1 {
+            color: rgb(54, 204, 209);
+        }
+
+        h3 {
+            color: burlywood;
+        }
+
+        /* Style for the dashboard icon */
+        #dashboard-icon {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Icon -->
+    <div id="dashboard-icon">&#9776;</div>
+
+    <div class="top-dashboard">
+        <h1>Top Dashboard</h1>
+        <!-- Add any additional elements or information for the top dashboard here -->
+    </div>
+
+    <center>
+        <h1>WELCOME</h1>
+    </center>
+
+    <center>
+        <h3>Shift Session</h3>
+    </center>
+
+    <div class="main-container">
+        <canvas id="percentageChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="sidebar">
+        <center>
+            <h2>Hotel</h2>
+        </center>
+        <a class="nav-link active" href="/dashboard">Dashboard</a>
+        <a class="nav-link active" href="/update">Attendance Details</a>
+        <a class="nav-link active" href="#">Page 2</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var chartData = {
+            labels: ["Day", "Night"],
+            datasets: [{
+                data: [70, 30],
+                backgroundColor: ["#36ccd1", "#f2f2f2"],
+            }]
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('percentageChart').getContext('2d');
+            var myDoughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: chartData,
+                options: {
+                    cutoutPercentage: 80,
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+
+        // Toggle sidebar when dashboard icon is clicked
+        document.getElementById('dashboard-icon').addEventListener('click', function () {
+            var sidebar = document.querySelector('.sidebar');
+            var mainContainer = document.querySelector('.main-container');
+
+            // Toggle sidebar and main container by changing width and margin-left
+            sidebar.classList.toggle('show-sidebar');
+            mainContainer.classList.toggle('expand-main-container');
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 <a href="https://www.w3schools.com/TAgs/tag_footer.asp">TODO</a> App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

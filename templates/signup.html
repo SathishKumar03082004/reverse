@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="../assets/nec.jpg">    <title>PROFILE EDIT</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        select {
+            height: 40px;
+        }
+        a:link, a:visited {
+            background-color: #3385ff;
+            color: white;
+            padding: 10px 3%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 15px;
+        }
+        a:hover, a:active {
+            background-color: #cccc00;
+            box-shadow: 0 3px #100;
+        }
+        @media screen and (max-width: 500px) {
+            form {
+                padding: 10px;
+            }
+            label {
+                font-size: 14px;
+            }
+            input[type="text"],
+            input[type="email"],
+            select {
+                font-size: 12px;
+            }
+            a:link, a:visited {
+                padding: 8px 3%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form action="/newuser" method="post">
+        <h1>Sign Up</h1>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="number" name="number" required>
+        <br><label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="repeat-password">Repeat-Password:</label>
+        <input type="password" id="repeat-password" name="repeat-password" required>
+        <br><br>
+        <button type="submit" onsubmit="validateForm()">Submit</button>
+    </form>
+    <script>
+    function validateForm() {
+        var name = document.getElementById("name").value;
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var gender = document.getElementById("gender").value;
+        var number = document.getElementById("number").value;
+        var password = document.getElementById("password").value;
+        var repeatPassword = document.getElementById("repeat-password").value;
+
+        if (name === "" || username === "" || email === "" || gender === "" || number === "" || password === "" || repeatPassword === "") {
+            alert("Please fill in all the required fields.");
+            return false;
+        }
+
+        if (password !== repeatPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+        .card {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .logo {
+            max-width: 100px;
+            max-height: 100px;
+            margin-bottom: 10px;
+            border-radius: 30px;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            margin: 5px;
+            font-size: 20px;
+            color: #0077b5;
+        }
+        .criteria-details {
+            text-align: left;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .card {
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Company Name:{{new_name.cname}}</h2>
+        <p>Company Overview:{{new_name.overview}}</p>
+        <div class="criteria-details">
+            <p><strong>Eligibility Criteria:</strong></p>
+            <ul>
+                <li>CGPA: {{new_name.cgpa}}</li>
+                <li>12th Marks: {{new_name.twelfth}}</li>
+                <li>10th Marks: {{new_name.tenth}}</li>
+            </ul>
+        </div>
+        <p>Drive Date: {{new_name.ddate}}</p>
+        <p>Job Details: {{new_name.jdetails}}</p>
+        <p>Description: {{new_name.Description}}</p>
+        <p>Contact: {{new_name.contact}}</p>
+    </div>
+</body>
+</html>

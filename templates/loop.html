@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>UPCOMING</title>
+    <style>
+        h2 {
+            color: #ff66cc;
+        }
+        .card {
+            background-color: rgba(20, 179, 165, 0.3) ; 
+        }
+        .card:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(20, 179, 165, 0.3);
+        }
+        .btn-primary:hover {
+            background-color: #17a2b8;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>Upcoming Drives</h2>
+    </center>
+    {% if new_card %}
+        {% for card in new_card %}
+            <main>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>{{ card.company }}</h5>
+                                <a href="/card" class="btn btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        {% endfor %}
+    {% else %}
+        <p>No upcoming drives found.</p>
+    {% endif %}
+</body>
+</html>
