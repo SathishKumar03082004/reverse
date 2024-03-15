@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry Form</title>
+</head>
+<body>
+    <h2>Drive Entry</h2>
+    <form action="/drive" method="post">
+        <label for="cname">Name:</label>
+        <input type="text" id="cname" name="cname" maxlength="10" required><br>
+
+        <label for="overview">Overview:</label>
+        <input type="text" id="overview" name="overview" maxlength="30" required><br>
+
+        <label for="cgpa">CGPA:</label>
+        <input type="text" id="cgpa" name="cgpa" maxlength="20" required><br>
+
+        <label for="twelfth">Twelfth Grade:</label>
+        <input type="text" id="twelfth" name="twelfth" maxlength="20" required><br>
+
+        <label for="tenth">Tenth Grade:</label>
+        <input type="text" id="tenth" name="tenth" maxlength="20" required><br>
+
+        <label for="ddate">Date of Birth:</label>
+        <input type="text" id="ddate" name="ddate" maxlength="20" required><br>
+
+        <label for="jdetails">Job Details:</label>
+        <input type="text" id="jdetails" name="jdetails" maxlength="30" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" maxlength="255" required></textarea><br>
+
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" maxlength="30" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
