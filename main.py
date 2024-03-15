@@ -127,7 +127,7 @@ def get_login(request: Request, db: Session = Depends(get_db)):
 
 @app.post("/logcheck")
 def logcheck(request:Request,db:Session=Depends(get_db),login_user:str=Form(...),login_password:str=Form(...)):
-    #print(login_email,login_password)
+    print(login_user,login_password)
     find=db.query(models.SignUp).filter(models.SignUp.username==login_user,models.SignUp.password==login_password).first()
     if find is None:
         error= "Invalid Creditional"   
